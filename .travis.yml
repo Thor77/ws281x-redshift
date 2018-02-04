@@ -1,0 +1,22 @@
+language: python
+python:
+  - 2.7
+  - 3.5
+  - 3.6
+
+matrix:
+  include:
+    - python: 2.7
+      install:
+        - pip install pylama
+      script:
+        - pylama ws281x_redshift
+
+install:
+  - pip install pytest-cov
+
+script: py.test --cov=tsstats ws281x_redshift/
+
+after_success:
+  - pip install coveralls
+  - coveralls
